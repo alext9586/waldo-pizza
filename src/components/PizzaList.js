@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Query } from 'react-apollo';
+import Pizza from './Pizza';
 import gql from 'graphql-tag';
 
 const FEED_QUERY = gql`
@@ -27,12 +28,12 @@ class LinkList extends Component {
               if (loading) return <div>Fetching</div>
               if (error) return <div>Error</div>
         
-              //const linksToRender = data
-              console.log(data);
+              const pizzaSizes = data.pizzaSizes;
+              console.log(pizzaSizes);
         
               return (
                 <div>
-                  <h1>Hello World</h1>
+                  {pizzaSizes.map( (pizza, index) => <Pizza key={index} pizza={pizza} />)}
                 </div>
               )
             }}

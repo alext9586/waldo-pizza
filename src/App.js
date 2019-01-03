@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
-import LinkList from './components/LinkList'
+import PizzaList from './components/PizzaList'
 
 class App extends Component {
   render() {
-    return <LinkList />
+    return <PizzaList />
   }
 }
 
