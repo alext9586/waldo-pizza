@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import PizzaList from './components/PizzaList';
+import Pizza from './components/Pizza';
 import PizzaSizes from './components/PizzaSizes';
 import { createStore } from 'redux';
 import pizzaApp from './reducers';
@@ -28,7 +28,7 @@ class App extends Component {
       <Provider store={store}>
         <PizzaSizes onClick={(size) => store.dispatch({ type: SELECT_SIZE, size: size })} />
         { this.state.size !== ""
-          ? (<PizzaList size={this.state.size} />)
+          ? (<Pizza size={this.state.size} />)
           : null
         }
       </Provider>

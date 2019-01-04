@@ -43,8 +43,8 @@ class PizzaSizes extends Component {
     }
 }
 
-PizzaSizes.PropTypes = {
+PizzaSizes.propTypes = {
     onClick: PropTypes.func.isRequired
-}
+};
 
 export default PizzaSizes;

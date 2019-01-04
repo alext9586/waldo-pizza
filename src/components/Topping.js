@@ -1,36 +1,36 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class Topping extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-          selected: props.selected
-        };
-    
-        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleToppingClick = this.handleToppingClick.bind(this);
     }
 
-    handleInputChange(topping) {
-        console.log(topping);
-        // this.setState({
-        //   selected: event.target.value
-        // });
+    handleToppingClick(topping) {
+        topping.selected = !topping.selected;
+        this.props.toppingClick(topping);
     }
 
     render() {
-        const {name} = this.props.topping;
+        const {topping} = this.props;
         return (
             <div>
                 <label>
                     <input
                         type="checkbox"
-                        checked={this.props.selected}
-                        onChange={e => this.handleInputChange(name)}/>
-                    {name}
+                        checked={topping.selected}
+                        onChange={e => this.handleToppingClick(topping)}/>
+                    {topping.name}
                 </label>
             </div>
         );
     }
 }
+
+Topping.propTypes = {
+    topping: PropTypes.object.isRequired,
+    toppingClick: PropTypes.func.isRequired
+};
 
 export default Topping;

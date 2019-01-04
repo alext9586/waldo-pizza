@@ -1,17 +1,57 @@
 import React, { Component } from 'react';
-import Topping from './Topping';
+import { Query } from 'react-apollo';
+import gql from 'graphql-tag';
+import PropTypes from 'prop-types';
+import ToppingsList from './ToppingsList';
 
 class Pizza extends Component {
-  render() {
-    return (
-      <div>
-        <div>
-          {this.props.pizza.name} ({this.props.pizza.maxToppings})
-          {this.props.pizza.toppings.map((topping, index) => <Topping key={index} selected={topping.defaultSelected} topping={topping.topping} />)}
-        </div>
-      </div>
-    );
-  }
+    render() {
+        const {size} = this.props;
+        const queryLiteral = `
+        {
+            pizzaSizeByName(name: ${size.toUpperCase()}) {
+              name,
+              maxToppings,
+              basePrice,
+              toppings {
+                topping {
+                  name,
+                  price
+                },
+                defaultSelected
+              }
+            }
+          }
+        `;
+        const QUERY = gql(queryLiteral);
+
+        return (
+          <Query query={QUERY}>
+            {({ loading, error, data }) => {
+              if (loading) return <div>Fetching</div>
+              if (error) return <div>Error</div>
+        
+              const basePizza = data.pizzaSizeByName;
+              const toppings = basePizza.toppings.map((topping, index) => {
+                return {
+                    id: index,
+                    selected: topping.defaultSelected,
+                    name: topping.topping.name,
+                    price: topping.topping.price
+                }
+              });
+
+              return (
+                <ToppingsList toppings={toppings} toppingClick={e => console.log(e)} />
+              )
+            }}
+          </Query>
+        )
+      }
 }
+
+Pizza.propTypes = {
+    size: PropTypes.string.isRequired
+};
 
 export default Pizza;
