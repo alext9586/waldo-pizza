@@ -20,7 +20,7 @@ const FEED_QUERY = gql`
   }
 `;
 
-class LinkList extends Component {
+class PizzaList extends Component {
     render() {
         return (
           <Query query={FEED_QUERY}>
@@ -42,4 +42,4 @@ class LinkList extends Component {
       }
 }
 
-export default LinkList;
+export default PizzaList;

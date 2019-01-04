@@ -8,6 +8,7 @@ import { ApolloClient } from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
 import { InMemoryCache } from 'apollo-cache-inmemory';
 
+
 const httpLink = createHttpLink({
     uri: 'https://core-graphql.dev.waldo.photos/pizza'
 });
@@ -20,7 +21,8 @@ const client = new ApolloClient({
 ReactDOM.render(
     <ApolloProvider client={client}>
         <App />
-    </ApolloProvider>,
+    </ApolloProvider>
+    ,
     document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
