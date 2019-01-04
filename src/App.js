@@ -1,39 +1,42 @@
-import React, { Component } from 'react';
-import Pizza from './components/Pizza';
-import PizzaSizes from './components/PizzaSizes';
-import { createStore } from 'redux';
-import pizzaApp from './reducers';
-import { Provider } from 'react-redux';
-import { SELECT_SIZE } from './actions';
+import React, { Component } from "react";
+import Pizza from "./components/Pizza";
+import PizzaSizes from "./components/PizzaSizes";
+import { createStore } from "redux";
+import pizzaApp from "./reducers";
+import { Provider } from "react-redux";
+import { SELECT_SIZE } from "./actions";
 
 const store = createStore(pizzaApp);
 
 class App extends Component {
-  constructor(props) {
-    super(props);
+	constructor(props) {
+		super(props);
 
-    this.state = {
-      size: ""
-    };
+		this.state = {
+			size: ""
+		};
 
-    store.subscribe(() => {
-      this.setState({
-        size: store.getState().size
-      });
-    });
-  }
+		store.subscribe(() => {
+			this.setState({
+				size: store.getState().size
+			});
+		});
+	}
 
-  render() {
-    return(
-      <Provider store={store}>
-        <PizzaSizes onClick={(size) => store.dispatch({ type: SELECT_SIZE, size: size })} />
-        { this.state.size !== ""
-          ? (<Pizza size={this.state.size} />)
-          : null
-        }
-      </Provider>
-    )
-  }
+	render() {
+		return (
+			<Provider store={store}>
+				<PizzaSizes
+					onClick={size =>
+						store.dispatch({ type: SELECT_SIZE, size: size })
+					}
+				/>
+				{this.state.size !== "" ? (
+					<Pizza size={this.state.size} />
+				) : null}
+			</Provider>
+		);
+	}
 }
 
-export default App
+export default App;
