@@ -5,27 +5,21 @@ import Topping from "./Topping";
 class ToppingsList extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			toppings: this.props.toppings
-		};
-
 		this.handleToppingClick = this.handleToppingClick.bind(this);
 	}
 
 	handleToppingClick(topping) {
-		let newToppings = this.state.toppings.map(t => {
+		let newToppings = this.props.toppings.map(t => {
 			return t.id === topping.id ? topping : t;
 		});
 
-		this.setState({
-			toppings: newToppings
-		});
+		this.props.toppingClick(newToppings);
 	}
 
 	render() {
 		return (
 			<div>
-				{this.state.toppings.map(topping => (
+				{this.props.toppings.map(topping => (
 					<Topping
 						key={topping.name}
 						topping={topping}

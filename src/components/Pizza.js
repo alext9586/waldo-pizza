@@ -2,11 +2,10 @@ import React, { Component } from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import PropTypes from "prop-types";
-import ToppingsList from "./ToppingsList";
 
 class Pizza extends Component {
 	render() {
-		const { size } = this.props;
+		const { size, saveBasePizza } = this.props;
 		const queryLiteral = `
       {
           pizzaSizeByName(name: ${size.toUpperCase()}) {
@@ -32,23 +31,9 @@ class Pizza extends Component {
 					if (error) return <div>Error</div>;
 
 					const basePizza = data.pizzaSizeByName;
-					const toppings = basePizza.toppings.map(
-						(topping, index) => {
-							return {
-								id: index,
-								selected: topping.defaultSelected,
-								name: topping.topping.name,
-								price: topping.topping.price
-							};
-						}
-					);
-
-					return (
-						<ToppingsList
-							toppings={toppings}
-							toppingClick={e => console.log(e)}
-						/>
-					);
+          
+          saveBasePizza(basePizza);
+          return (<h1>Loading</h1>)
 				}}
 			</Query>
 		);
@@ -56,7 +41,8 @@ class Pizza extends Component {
 }
 
 Pizza.propTypes = {
-	size: PropTypes.string.isRequired
+  size: PropTypes.string.isRequired,
+  saveBasePizza: PropTypes.func.isRequired
 };
 
 export default Pizza;
