@@ -1,7 +1,8 @@
-import { SELECT_SIZE, ADD_TOPPING, REMOVE_TOPPING, SUBMIT_ORDER } from "../actions";
+import { SELECT_SIZE, ADD_TOPPING, REMOVE_TOPPING, SUBMIT_ORDER, SAVE_BASE_PIZZA } from "../actions";
 
 const initialState = {
     size: '',
+    basePizza: {},
     toppings: []
 };
 
@@ -11,6 +12,10 @@ function pizzaApp(state = initialState, action) {
             return Object.assign({}, state, {
                 size: action.size
             });
+        case SAVE_BASE_PIZZA:
+            return Object.assign({}, state, {
+                basePizza: action.pizza
+            })
         case ADD_TOPPING:
             return Object.assign({}, state, {
                 toppings: state.toppings.map(topping => topping.selected)
