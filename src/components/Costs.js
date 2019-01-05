@@ -10,13 +10,13 @@ class Costs extends Component {
 
     return (
       <div>
-        <div>{basePizza.name.toUpperCase()} Pizza: ${basePizza.basePrice}</div>
+        <h2>{basePizza.name.toUpperCase()} Pizza: ${basePizza.basePrice}</h2>
         {
           selectedToppings
             .map(topping => <div key={topping.id}>{topping.name} ${topping.price}</div>)
         }
         <hr />
-        <div>Total: ${total}</div>
+        <h2>Total: ${total}</h2>
       </div>
     );
   }

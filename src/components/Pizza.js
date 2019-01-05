@@ -32,8 +32,8 @@ class Pizza extends Component {
 
 					const basePizza = data.pizzaSizeByName;
           
-          saveBasePizza(basePizza);
-          return (<h1>Loading</h1>)
+          setTimeout(()=>saveBasePizza(basePizza), 10);
+          return (<h1>Loading...</h1>)
 				}}
 			</Query>
 		);

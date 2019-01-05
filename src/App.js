@@ -7,6 +7,7 @@ import { createStore } from "redux";
 import pizzaApp from "./reducers";
 import { Provider } from "react-redux";
 import {selectSize, saveBasePizza, saveToppings} from "./actions";
+import {STAGE_SELECT_SIZE, STAGE_LOAD_PIZZA, STAGE_SELECT_TOPPINGS} from "./reducers";
 
 const store = createStore(pizzaApp);
 
@@ -14,25 +15,30 @@ class App extends Component {
 	constructor(props) {
 		super(props);
 
-		this.state = {
-			size: "",
-			basePizza: null,
-			toppings: []
-		};
+		this.state = store.getState();
 
 		store.subscribe(() => {
 			this.setState({
+        stage: store.getState().stage,
 				size: store.getState().size,
 				basePizza: store.getState().basePizza,
 				toppings: store.getState().toppings
 			});
 		});
-	}
+  }
+  
+  changeStage(newStage) {
+    this.setState({
+      stage: newStage
+    })
+  }
 
 	render() {
+    const {stage} = this.state;
+
 		return (
 			<Provider store={store}>
-				{this.state.size === "" ? (
+				{stage === STAGE_SELECT_SIZE ? (
 					<PizzaSizes
 						onClick={size =>
 							store.dispatch(selectSize(size))
@@ -40,16 +46,17 @@ class App extends Component {
 					/>
 				) : null}
 
-				{this.state.size !== "" && this.state.toppings.length === 0 ? (
+				{stage === STAGE_LOAD_PIZZA ? (
 					<Pizza
 						size={this.state.size}
 						saveBasePizza={basePizza => store.dispatch(saveBasePizza(basePizza))}
 					/>
 				) : null}
 
-				{this.state.toppings.length > 0 ? (
+				{stage === STAGE_SELECT_TOPPINGS ? (
 					<div>
 						<ToppingsList
+              maxToppings={this.state.basePizza.maxToppings}
 							toppings={this.state.toppings}
 							toppingClick={toppings => store.dispatch(saveToppings(toppings))}
 						/>

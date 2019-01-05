@@ -17,13 +17,19 @@ class ToppingsList extends Component {
 	}
 
 	render() {
+    const {toppings, maxToppings} = this.props;
+    const disableUnselected = toppings.filter(t => t.selected).length === maxToppings;
+    const toppingsLeft = maxToppings - toppings.filter(t => t.selected).length;
+
 		return (
 			<div>
-				{this.props.toppings.map(topping => (
+        <h2>Toppings Left: {toppingsLeft}</h2>
+				{toppings.map(topping => (
 					<Topping
 						key={topping.name}
 						topping={topping}
-						toppingClick={t => this.handleToppingClick(t)}
+            toppingClick={t => this.handleToppingClick(t)}
+            disabled={!topping.selected && disableUnselected}
 					/>
 				))}
 			</div>
@@ -32,6 +38,7 @@ class ToppingsList extends Component {
 }
 
 ToppingsList.propTypes = {
+  maxToppings: PropTypes.number.isRequired,
 	toppings: PropTypes.array.isRequired,
 	toppingClick: PropTypes.func.isRequired
 };

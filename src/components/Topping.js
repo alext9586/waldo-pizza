@@ -13,13 +13,14 @@ class Topping extends Component {
 	}
 
 	render() {
-		const { topping } = this.props;
+		const { topping, disabled } = this.props;
 		return (
 			<div>
 				<label>
 					<input
 						type="checkbox"
-						checked={topping.selected}
+            checked={topping.selected}
+            disabled={disabled}
 						onChange={e => this.handleToppingClick(topping)}
 					/>
 					{topping.name}
@@ -31,7 +32,8 @@ class Topping extends Component {
 
 Topping.propTypes = {
 	topping: PropTypes.object.isRequired,
-	toppingClick: PropTypes.func.isRequired
+  toppingClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool
 };
 
 export default Topping;
