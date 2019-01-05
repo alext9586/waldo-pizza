@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import CurrencyDisplay from "./CurrencyDisplay";
 
 class TotalCosts extends Component {
     render() {
@@ -16,7 +17,7 @@ class TotalCosts extends Component {
                 <tbody>
                     <tr>
                         <td className="cost-table-col-1"><h2>Total:</h2></td>
-                        <td className="cost-table-col-2"><h2>${total}</h2></td>
+                        <td className="cost-table-col-2"><h2><CurrencyDisplay value={total} /></h2></td>
                     </tr>
                 </tbody>
             </table>

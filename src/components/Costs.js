@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import CurrencyDisplay from "./CurrencyDisplay";
 
 class Costs extends Component {
   render() {
@@ -11,11 +12,11 @@ class Costs extends Component {
         <tbody>
           <tr>
             <td className="cost-table-col-1"><h2>{basePizza.name.toUpperCase()} Pizza:</h2></td>
-            <td className="cost-table-col-2"><h2>${basePizza.basePrice}</h2></td>
+            <td className="cost-table-col-2"><h2><CurrencyDisplay value={basePizza.basePrice} /></h2></td>
           </tr>
           {
             selectedToppings
-              .map(topping => <tr key={topping.id}><td>{topping.name}</td><td>${topping.price}</td></tr>)
+              .map(topping => <tr key={topping.id}><td>{topping.name}</td><td><CurrencyDisplay value={topping.price} /></td></tr>)
           }
         </tbody>
       </table>

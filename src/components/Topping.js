@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
+import CurrencyDisplay from "./CurrencyDisplay";
 
 class Topping extends Component {
 	constructor(props) {
@@ -23,7 +24,7 @@ class Topping extends Component {
 						disabled={disabled}
 						onChange={e => this.handleToppingClick(topping)}
 					/>
-					{topping.name} (${topping.price})
+					{topping.name} (<CurrencyDisplay value={topping.price} />)
 				</label>
 			</div>
 		);
