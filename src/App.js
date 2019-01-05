@@ -9,6 +9,7 @@ import { Provider } from "react-redux";
 import {selectSize, saveBasePizza, saveToppings, addPizzaToCart} from "./actions";
 import {STAGE_SELECT_SIZE, STAGE_LOAD_PIZZA, STAGE_SELECT_TOPPINGS} from "./reducers";
 import TotalCosts from "./components/TotalCosts";
+import Cart from "./components/Cart";
 
 const store = createStore(pizzaApp);
 
@@ -36,46 +37,50 @@ class App extends Component {
   }
 
 	render() {
-    const {stage} = this.state;
+    const {stage, size, basePizza, toppings, cart} = this.state;
 
 		return (
 			<Provider store={store}>
 				{stage === STAGE_SELECT_SIZE ? (
 					<PizzaSizes
-						onClick={size =>
-							store.dispatch(selectSize(size))
+						onClick={s =>
+							store.dispatch(selectSize(s))
 						}
 					/>
 				) : null}
 
 				{stage === STAGE_LOAD_PIZZA ? (
 					<Pizza
-						size={this.state.size}
-						saveBasePizza={basePizza => store.dispatch(saveBasePizza(basePizza))}
+						size={size}
+						saveBasePizza={bp => store.dispatch(saveBasePizza(bp))}
 					/>
 				) : null}
 
 				{stage === STAGE_SELECT_TOPPINGS ? (
 					<div>
 						<ToppingsList
-              maxToppings={this.state.basePizza.maxToppings}
-							toppings={this.state.toppings}
-							toppingClick={toppings => store.dispatch(saveToppings(toppings))}
+              maxToppings={basePizza.maxToppings}
+							toppings={toppings}
+							toppingClick={t => store.dispatch(saveToppings(t))}
 						/>
             <hr />
 						<Costs
-							basePizza={this.state.basePizza}
-							toppings={this.state.toppings}
+							basePizza={basePizza}
+							toppings={toppings}
 						/>
 						<button onClick={e => store.dispatch(addPizzaToCart())}>Add to Cart</button>
 					</div>
 				) : null}
 
+				{cart.length > 0 ? (
+					<hr />
+				) : null}
+				<Cart cart={cart} />
 				<hr />
 				<TotalCosts 
-					basePizza={this.state.basePizza}
-					toppings={this.state.toppings}
-					cart={this.state.cart}
+					basePizza={basePizza}
+					toppings={toppings}
+					cart={cart}
 				/>
 			</Provider>
 		);
