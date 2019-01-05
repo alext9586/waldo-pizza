@@ -2,7 +2,8 @@ import {
 	SELECT_SIZE,
 	SAVE_TOPPINGS,
 	SUBMIT_ORDER,
-	SAVE_BASE_PIZZA
+	SAVE_BASE_PIZZA,
+	ADD_PIZZA_TO_CART
 } from "../actions";
 
 export const STAGE_SELECT_SIZE = 1;
@@ -14,7 +15,8 @@ const initialState = {
 	stage: STAGE_SELECT_SIZE,
 	size: "",
 	basePizza: null,
-	toppings: []
+	toppings: [],
+	cart: []
 };
 
 function pizzaApp(state = initialState, action) {
@@ -34,7 +36,7 @@ function pizzaApp(state = initialState, action) {
 				};
 			});
 			return Object.assign({}, state, {
-        stage: STAGE_SELECT_TOPPINGS,
+				stage: STAGE_SELECT_TOPPINGS,
 				basePizza: action.pizza,
 				toppings: toppings
 			});
@@ -42,10 +44,25 @@ function pizzaApp(state = initialState, action) {
 			return Object.assign({}, state, {
 				toppings: [...action.toppings]
 			});
-		case SUBMIT_ORDER:
+    case ADD_PIZZA_TO_CART:
+      const pizza = {
+        id: Math.random() * 1000000,
+        basePizza: state.basePizza,
+        toppings: state.toppings.filter(t => t.selected),
+        price: state.basePizza.basePrice + state.toppings.filter(t => t.selected).map(t => t.price).reduce((a,b) => a + b)
+      };
+      
       return Object.assign({}, state, {
-        stage: STAGE_SUBMIT
-      });
+        stage: STAGE_SELECT_SIZE,
+        size: "",
+        basePizza: null,
+        toppings: [],
+				cart: [...state.cart, pizza]
+			});
+		case SUBMIT_ORDER:
+			return Object.assign({}, state, {
+				stage: STAGE_SUBMIT
+			});
 		default:
 			return state;
 	}

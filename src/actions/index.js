@@ -1,6 +1,7 @@
 export const SELECT_SIZE = 'SELECT_SIZE';
 export const SAVE_BASE_PIZZA = 'SAVE_BASE_PIZZA';
 export const SAVE_TOPPINGS = 'SAVE_TOPPINGS';
+export const ADD_PIZZA_TO_CART = 'ADD_PIZZA_TO_CART';
 export const SUBMIT_ORDER = 'SUBMIT_ORDER';
 
 export function selectSize(size) {
@@ -13,6 +14,10 @@ export function saveBasePizza(pizza) {
 
 export function saveToppings(toppings) {
     return { type: SAVE_TOPPINGS, toppings: toppings }
+}
+
+export function addPizzaToCart() {
+    return { type: ADD_PIZZA_TO_CART}
 }
 
 export function submitOrder() {

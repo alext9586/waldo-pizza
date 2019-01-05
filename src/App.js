@@ -6,8 +6,9 @@ import Costs from "./components/Costs";
 import { createStore } from "redux";
 import pizzaApp from "./reducers";
 import { Provider } from "react-redux";
-import {selectSize, saveBasePizza, saveToppings} from "./actions";
+import {selectSize, saveBasePizza, saveToppings, addPizzaToCart} from "./actions";
 import {STAGE_SELECT_SIZE, STAGE_LOAD_PIZZA, STAGE_SELECT_TOPPINGS} from "./reducers";
+import TotalCosts from "./components/TotalCosts";
 
 const store = createStore(pizzaApp);
 
@@ -22,7 +23,8 @@ class App extends Component {
         stage: store.getState().stage,
 				size: store.getState().size,
 				basePizza: store.getState().basePizza,
-				toppings: store.getState().toppings
+				toppings: store.getState().toppings,
+				cart: store.getState().cart
 			});
 		});
   }
@@ -65,8 +67,16 @@ class App extends Component {
 							basePizza={this.state.basePizza}
 							toppings={this.state.toppings}
 						/>
+						<button onClick={e => store.dispatch(addPizzaToCart())}>Add to Cart</button>
 					</div>
 				) : null}
+
+				<hr />
+				<TotalCosts 
+					basePizza={this.state.basePizza}
+					toppings={this.state.toppings}
+					cart={this.state.cart}
+				/>
 			</Provider>
 		);
 	}

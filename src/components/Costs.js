@@ -6,18 +6,19 @@ class Costs extends Component {
     const {basePizza, toppings} = this.props;
     const selectedToppings = toppings.filter(topping => topping.selected);
 
-    const total = basePizza.basePrice + selectedToppings.map(t => t.price).reduce((a,b) => a + b);
-
     return (
-      <div>
-        <h2>{basePizza.name.toUpperCase()} Pizza: ${basePizza.basePrice}</h2>
-        {
-          selectedToppings
-            .map(topping => <div key={topping.id}>{topping.name} ${topping.price}</div>)
-        }
-        <hr />
-        <h2>Total: ${total}</h2>
-      </div>
+      <table className="cost-table">
+        <tbody>
+          <tr>
+            <td className="cost-table-col-1"><h2>{basePizza.name.toUpperCase()} Pizza:</h2></td>
+            <td className="cost-table-col-2"><h2>${basePizza.basePrice}</h2></td>
+          </tr>
+          {
+            selectedToppings
+              .map(topping => <tr key={topping.id}><td>{topping.name}</td><td>${topping.price}</td></tr>)
+          }
+        </tbody>
+      </table>
     );
   }
 }

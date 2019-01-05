@@ -19,11 +19,11 @@ class Topping extends Component {
 				<label>
 					<input
 						type="checkbox"
-            checked={topping.selected}
-            disabled={disabled}
+						checked={topping.selected}
+						disabled={disabled}
 						onChange={e => this.handleToppingClick(topping)}
 					/>
-					{topping.name}
+					{topping.name} (${topping.price})
 				</label>
 			</div>
 		);

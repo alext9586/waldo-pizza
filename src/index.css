@@ -12,3 +12,18 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
+button {
+  cursor: pointer;
+  margin: 10px;
+  padding: 5px;
+  font-size: 16pt;
+}
+
+.cost-table-col-1 {
+  width: 300px;
+}
+
+.cost-table-col-2 {
+  width: 200px;
+}
