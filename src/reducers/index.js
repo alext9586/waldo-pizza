@@ -4,7 +4,8 @@ import {
 	SUBMIT_ORDER,
 	SAVE_BASE_PIZZA,
 	ADD_PIZZA_TO_CART,
-	REMOVE_CURRENT_PIZZA
+	REMOVE_CURRENT_PIZZA,
+	REMOVE_PIZZA_FROM_CART
 } from "../actions";
 
 export const STAGE_SELECT_SIZE = 1;
@@ -55,6 +56,11 @@ function pizzaApp(state = initialState, action) {
 			
 			return Object.assign({}, initialState, {
 				cart: [...state.cart, pizza]
+			});
+		case REMOVE_PIZZA_FROM_CART:
+			const cart = state.cart.filter(p => p.id !== action.id);
+			return Object.assign({}, state, {
+				cart: cart
 			});
 		case REMOVE_CURRENT_PIZZA:
 			return Object.assign({}, initialState, {

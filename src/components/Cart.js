@@ -4,18 +4,20 @@ import Costs from "./Costs";
 
 class Cart extends Component {
     render() {
-        const {cart} = this.props;
+        const {cart, removeClick} = this.props;
 
         return(
             (!cart || cart.length === 0)
                 ? null
                 : cart.map(pizza => {
                     return (
-                    <Costs
-                        key={pizza.id}
-                        basePizza={pizza.basePizza}
-                        toppings={pizza.toppings}
-                    />
+                        <div key={pizza.id}>
+                            <Costs
+                                basePizza={pizza.basePizza}
+                                toppings={pizza.toppings}
+                            />
+                            <button onClick={e => removeClick(pizza.id)}>Remove</button>
+                        </div>
                     );
                 })
         );
@@ -23,7 +25,8 @@ class Cart extends Component {
 }
 
 Cart.propTypes = {
-    cart: PropTypes.array
+    cart: PropTypes.array,
+    removeClick: PropTypes.func.isRequired
 };
 
 export default Cart;

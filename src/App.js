@@ -6,7 +6,7 @@ import Costs from "./components/Costs";
 import { createStore } from "redux";
 import pizzaApp from "./reducers";
 import { Provider } from "react-redux";
-import {selectSize, saveBasePizza, saveToppings, addPizzaToCart, removeCurrentPizza} from "./actions";
+import {selectSize, saveBasePizza, saveToppings, addPizzaToCart, removeCurrentPizza, removePizzaFromCart} from "./actions";
 import {STAGE_SELECT_SIZE, STAGE_LOAD_PIZZA, STAGE_SELECT_TOPPINGS} from "./reducers";
 import TotalCosts from "./components/TotalCosts";
 import Cart from "./components/Cart";
@@ -74,9 +74,12 @@ class App extends Component {
 				) : null}
 
 				{cart.length > 0 ? (
-					<hr />
+					<div>
+						<hr />
+						<h1>Shopping Cart</h1>
+					</div>
 				) : null}
-				<Cart cart={cart} />
+				<Cart cart={cart} removeClick={p => store.dispatch(removePizzaFromCart(p))} />
 				<hr />
 				<TotalCosts 
 					basePizza={basePizza}

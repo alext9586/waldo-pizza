@@ -27,9 +27,11 @@ class PizzaSizes extends Component {
 
 					return (
 						<div>
+							<h2>Select a pizza size:</h2>
 							{pizzaSizes.map(size => (
 								<button
 									key={size.name}
+									className="pizza-size"
 									onClick={e =>
 										this.handleButtonClick(size.name)
 									}>

@@ -20,6 +20,18 @@ button {
   font-size: 16pt;
 }
 
+.topping-disabled {
+  color: gray;
+}
+
+.pizza-size {
+  text-transform: uppercase;
+}
+
+.topping {
+  text-transform: capitalize;
+}
+
 .cost-table-label-col {
   width: 300px;
 }

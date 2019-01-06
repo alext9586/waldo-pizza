@@ -17,14 +17,14 @@ class Topping extends Component {
 		const { topping, disabled } = this.props;
 		return (
 			<div>
-				<label>
+				<label className={disabled ? "topping-disabled" : ""}>
 					<input
 						type="checkbox"
 						checked={topping.selected}
 						disabled={disabled}
 						onChange={e => this.handleToppingClick(topping)}
 					/>
-					{topping.name} (<CurrencyDisplay value={topping.price} />)
+					<span className="topping">{topping.name}</span> (<CurrencyDisplay value={topping.price} />)
 				</label>
 			</div>
 		);
