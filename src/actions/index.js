@@ -1,3 +1,4 @@
+export const START = "START";
 export const SELECT_SIZE = "SELECT_SIZE";
 export const SAVE_BASE_PIZZA = "SAVE_BASE_PIZZA";
 export const SAVE_TOPPINGS = "SAVE_TOPPINGS";
@@ -5,6 +6,10 @@ export const ADD_PIZZA_TO_CART = "ADD_PIZZA_TO_CART";
 export const REMOVE_PIZZA_FROM_CART = "REMOVE_PIZZA_FROM_CART";
 export const REMOVE_CURRENT_PIZZA = "REMOVE_CURRENT_PIZZA";
 export const SUBMIT_ORDER = "SUBMIT_ORDER";
+
+export function start() {
+    return { type: START };
+}
 
 export function selectSize(size) {
 	return { type: SELECT_SIZE, size: size };

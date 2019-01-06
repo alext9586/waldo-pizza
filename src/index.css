@@ -20,6 +20,11 @@ button {
   font-size: 16pt;
 }
 
+.employee-name, .address {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
 .topping-disabled {
   color: gray;
 }
@@ -39,4 +44,6 @@ button {
 .cost-table-price-col {
   width: 200px;
   text-align: right;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
 }

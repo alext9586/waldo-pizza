@@ -11,7 +11,7 @@ class Costs extends Component {
       <table className="cost-table">
         <tbody>
           <tr>
-            <td className="cost-table-label-col pizza-size"><h2>{basePizza.name} Pizza:</h2></td>
+            <td className="cost-table-label-col pizza-size"><h2>{basePizza.name} Pizza</h2></td>
             <td className="cost-table-price-col"><h2><CurrencyDisplay value={basePizza.basePrice} /></h2></td>
           </tr>
           {

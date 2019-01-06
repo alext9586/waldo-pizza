@@ -1,4 +1,5 @@
 import {
+	START,
 	SELECT_SIZE,
 	SAVE_TOPPINGS,
 	SUBMIT_ORDER,
@@ -8,6 +9,7 @@ import {
 	REMOVE_PIZZA_FROM_CART
 } from "../actions";
 
+export const STAGE_START = 0;
 export const STAGE_SELECT_SIZE = 1;
 export const STAGE_LOAD_PIZZA = 2;
 export const STAGE_SELECT_TOPPINGS = 3;
@@ -23,6 +25,8 @@ const initialState = {
 
 function pizzaApp(state = initialState, action) {
 	switch (action.type) {
+		case START:
+			return Object.assign({}, initialState);
 		case SELECT_SIZE:
 			return Object.assign({}, state, {
 				stage: STAGE_LOAD_PIZZA,
@@ -67,7 +71,7 @@ function pizzaApp(state = initialState, action) {
 				cart: [...state.cart]
 			});
 		case SUBMIT_ORDER:
-			return Object.assign({}, state, {
+			return Object.assign({}, initialState, {
 				stage: STAGE_SUBMIT
 			});
 		default:
