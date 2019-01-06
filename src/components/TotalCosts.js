@@ -16,8 +16,8 @@ class TotalCosts extends Component {
             <table>
                 <tbody>
                     <tr>
-                        <td className="cost-table-col-1"><h2>Total:</h2></td>
-                        <td className="cost-table-col-2"><h2><CurrencyDisplay value={total} /></h2></td>
+                        <td className="cost-table-label-col"><h2>Total:</h2></td>
+                        <td className="cost-table-price-col"><h2><CurrencyDisplay value={total} /></h2></td>
                     </tr>
                 </tbody>
             </table>

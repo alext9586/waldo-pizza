@@ -20,10 +20,11 @@ button {
   font-size: 16pt;
 }
 
-.cost-table-col-1 {
+.cost-table-label-col {
   width: 300px;
 }
 
-.cost-table-col-2 {
+.cost-table-price-col {
   width: 200px;
+  text-align: right;
 }
