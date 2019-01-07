@@ -4,13 +4,9 @@ import CurrencyDisplay from "./CurrencyDisplay";
 
 class TotalCosts extends Component {
     render() {
-        const {basePizza, toppings, cart} = this.props;
+        const {cart} = this.props;
 
-        const basePizzaCost = !basePizza ? 0 : basePizza.basePrice;
-        const toppingsCost = (!toppings || toppings.length === 0) ? 0 : toppings.filter(t => t.selected).map(t => t.price).reduce((a,b) => a + b);
-        const cartCost = (!cart || cart.length === 0) ? 0 : cart.map(t => t.price).reduce((a,b) => a + b);
-
-        const subtotal = basePizzaCost + toppingsCost + cartCost;
+        const subtotal = (!cart || cart.length === 0) ? 0 : cart.map(t => t.price).reduce((a,b) => a + b);
         const deliveryFee = 2;
         const tax = (subtotal + deliveryFee) * 0.0825;
         const total = subtotal + deliveryFee + tax;
@@ -41,8 +37,6 @@ class TotalCosts extends Component {
 }
 
 TotalCosts.propTypes = {
-    basePizza: PropTypes.object,
-    toppings: PropTypes.array,
     cart: PropTypes.array
 };
 

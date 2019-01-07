@@ -17,7 +17,7 @@ class Topping extends Component {
 		const { topping, disabled } = this.props;
 		return (
 			<div>
-				<label className={disabled ? "topping-disabled" : ""}>
+				<label className={disabled ? "topping-disabled" : "topping-selector"}>
 					<input
 						type="checkbox"
 						checked={topping.selected}

@@ -35,14 +35,27 @@ button {
 
 .topping {
   text-transform: capitalize;
+  padding-left: 10px;
 }
 
-.cost-table-label-col {
+.topping-selector, .topping-selector input {
+  cursor: pointer;
+}
+
+.topping-select-container {
+  display: flex;
+}
+
+.topping-list {
   width: 300px;
 }
 
-.cost-table-price-col {
+.cost-table-label-col {
   width: 200px;
+}
+
+.cost-table-price-col {
+  width: 150px;
   text-align: right;
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;

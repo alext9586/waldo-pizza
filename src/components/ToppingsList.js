@@ -22,7 +22,7 @@ class ToppingsList extends Component {
     const toppingsLeft = !maxToppings ? "Unlimited" : maxToppings - toppings.filter(t => t.selected).length;
 
 		return (
-			<div>
+			<div className="topping-list">
         <h2>Toppings Left: {toppingsLeft}</h2>
 				{toppings.map(topping => (
 					<Topping
